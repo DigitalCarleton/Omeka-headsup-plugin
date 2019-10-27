@@ -26,13 +26,15 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
 
   public function hookAdminDashboard(){
     $headsup_active = get_option('headsup-active');
-    echo "<section class='five columns omega'>
-    <div class='panel'>
-      <h2>Heads Up Info:</h2>
-      <p>Data</p>
-      <p>Active: {$headsup_active}</p>
-    </div>
-    </section>";
+    if ($headsup_active == 'true') {
+      echo "<section class='five columns omega'>
+      <div class='panel'>
+        <h2>Heads Up Info:</h2>
+        <p>Data</p>
+        <p>Active: {$headsup_active}</p>
+      </div>
+      </section>";
+    }
   }
 
 

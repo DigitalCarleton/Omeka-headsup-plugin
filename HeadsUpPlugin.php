@@ -20,7 +20,7 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
 
   public function filterAdminNavigationMain($navArray){
 
-    $navArray['AccessibilityPlus'] = array(
+    $navArray['HeadsUp'] = array(
         'label' => __("HeadsUp"),
         'uri' => url('headsup')
     );

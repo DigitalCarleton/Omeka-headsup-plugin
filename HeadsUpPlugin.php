@@ -18,5 +18,13 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
 
 
 
+  public function filterAdminNavigationMain($navArray){
+
+
+    return $navArray;
+  }
+
+
+
 
 }

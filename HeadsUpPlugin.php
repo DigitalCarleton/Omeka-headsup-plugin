@@ -25,10 +25,12 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
   }
 
   public function hookAdminDashboard(){
+    $headsup_active = get_option('alt_text_data');
     echo "<section class='five columns omega'>
     <div class='panel'>
       <h2>Heads Up Info:</h2>
-      <p>data</p>
+      <p>Data</p>
+      <p>Active: {$headsup_active}</p>
     </div>
     </section>";
   }

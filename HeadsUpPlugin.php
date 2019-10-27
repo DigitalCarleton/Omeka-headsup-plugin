@@ -15,7 +15,8 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
   public function hookAdminDashboard(){
     echo "<section class='five columns omega'>
     <div class='panel'>
-      HELLLLOOOOOOO
+      <h2>Heads Up Info:</h2>
+      <p>data</p>
     </div>
     </section>";
   }

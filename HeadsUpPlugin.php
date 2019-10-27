@@ -4,6 +4,8 @@
 class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
 
   protected $_hooks = array(
+      'install',
+      'uninstall',
       'admin_dashboard'
   );
 
@@ -11,6 +13,16 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
       'admin_navigation_main'
   );
 
+
+  public function hookInstall()
+  {
+      set_option('headsup-active', 'true');
+  }
+
+  public function hookUninstall()
+  {
+      delete_option('headsup-active');
+  }
 
   public function hookAdminDashboard(){
     echo "<section class='five columns omega'>

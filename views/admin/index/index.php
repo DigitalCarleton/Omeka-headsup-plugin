@@ -1,7 +1,7 @@
 <?php
 echo head(array(
-    'title' => 'Accessibility Plus',
-    'bodyclass' => 'accessibility-plus browse'
+    'title' => 'Heads Up',
+    'bodyclass' => 'heads-up browse'
 ));
 ?>
 

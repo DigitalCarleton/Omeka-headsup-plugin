@@ -24,6 +24,8 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
       delete_option('headsup-active');
   }
 
+
+
   public function hookAdminDashboard(){
     $headsup_active = get_option('headsup-active');
     if ($headsup_active == 'true') {
@@ -43,7 +45,7 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
 
     $navArray['HeadsUp'] = array(
         'label' => __("HeadsUp"),
-        'uri' => url('headsup')
+        'uri' => url('heads-up')
     );
 
     return $navArray;

@@ -25,6 +25,17 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
   }
 
 
+  public function filterAdminNavigationMain($navArray){
+
+    $navArray['HeadsUp'] = array(
+        'label' => __("HeadsUp"),
+        'uri' => url('heads-up')
+    );
+
+    return $navArray;
+  }
+
+
 
   public function hookAdminDashboard(){
     $headsup_active = get_option('headsup-active');
@@ -41,15 +52,7 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
 
 
 
-  public function filterAdminNavigationMain($navArray){
 
-    $navArray['HeadsUp'] = array(
-        'label' => __("HeadsUp"),
-        'uri' => url('heads-up')
-    );
-
-    return $navArray;
-  }
 
 
 

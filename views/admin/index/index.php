@@ -5,4 +5,10 @@ echo head(array(
 ));
 ?>
 
-<h1>HEADS UP</h1>
+
+<h4><?php echo __('Alternative Text Options'); ?></h4>
+
+
+<?php echo $form; ?>
+
+<?php echo foot();

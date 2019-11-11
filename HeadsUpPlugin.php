@@ -16,12 +16,12 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
 
   public function hookInstall()
   {
-      set_option('headsup-active', 1);
+      set_option('headsup_active', 1);
   }
 
   public function hookUninstall()
   {
-      delete_option('headsup-active');
+      delete_option('headsup_active');
   }
 
 
@@ -38,7 +38,7 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
 
 
   public function hookAdminDashboard(){
-    $headsup_active = get_option('headsup-active');
+    $headsup_active = get_option('headsup_active');
     if ($headsup_active == 1) {
       echo "<section class='five columns omega'>
       <div class='panel'>

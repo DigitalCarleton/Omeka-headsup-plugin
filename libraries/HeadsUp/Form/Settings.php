@@ -7,8 +7,8 @@ class HeadsUp_Form_Settings extends Omeka_Form
         parent::init();
 
 
-        $value = get_option('headsup-active');
-        
+        $value = get_option('headsup_active');
+
 
 
         $this->addElement(

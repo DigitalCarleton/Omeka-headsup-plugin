@@ -12,7 +12,7 @@ class HeadsUp_IndexController extends Omeka_Controller_AbstractActionController
           if ($form->isValid($request->getPost())) {
               $options = $form->getValues();
               foreach ($options as $value) {
-                  set_option('headsup-active', $value);
+                  set_option('headsup_active', $value);
               }
           }
       }

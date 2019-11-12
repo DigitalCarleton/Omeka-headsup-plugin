@@ -41,7 +41,7 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
     $headsup_active = get_option('headsup_active');
     if ($headsup_active == 1) {
 
-      $exhibits = get_records('Exhibit', $limit=0);
+      $exhibits = get_records('Exhibit', $params=array(), $limit=0);
       $numExhibits = count($exhibits);
 
       var_dump($exhibits);

@@ -44,7 +44,6 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
       $exhibits = get_records('Exhibit');
       $numExhibits = count($exhibits);
 
-      var_dump($exhibits);
 
       $totalPages = 0;
       foreach ($exhibits as $key => $exhibit) {

@@ -40,11 +40,28 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
   public function hookAdminDashboard(){
     $headsup_active = get_option('headsup_active');
     if ($headsup_active == 1) {
+
+      $exhibits = get_records('Exhibit');
+      $numExhibits = count($exhibits);
+
+
+      $totalPages = 0;
+      foreach ($exhibits as $key => $exhibit) {
+        $pages = $exhibit->getPages();
+        $numPages = count($pages);
+        $totalPages += $numPages;
+      }
+
+
+
+
+
+
       echo "<section class='five columns omega'>
       <div class='panel'>
         <h2>Heads Up Info:</h2>
-        <p>Data</p>
-        <p>Active: {$headsup_active}</p>
+        <p>Number of exhibits: {$numExhibits}</p>
+        <p>Total number of exhibit pages: {$numPages}</p>
       </div>
       </section>";
     }

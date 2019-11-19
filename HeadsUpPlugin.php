@@ -65,7 +65,7 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
       <div class='panel'>
         <h2>Heads Up Info:</h2>
         <p>Number of exhibits: {$numExhibits}</p>
-        <p>Total number of exhibit pages: {$numPages}</p>
+        <p>Total number of exhibit pages: {$totalPages}</p>
       </div>
       </section>";
     }

@@ -50,7 +50,7 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
         $pages = $exhibit->getPages();
         $totalPages += count($pages);
         foreach ($pages as $page) {
-          $children = $page=>getChildPages();
+          $children = $page->getChildPages();
           $totalPages += count($children);
         }
 

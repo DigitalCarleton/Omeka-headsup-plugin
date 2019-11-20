@@ -48,7 +48,7 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
       $totalPages = 0;
       foreach ($exhibits as $key => $exhibit) {
         $pages = $exhibit->getPages();
-        $totalPages += count($pages);
+        //$totalPages += count($pages);
         foreach ($pages as $page) {
           $children = $page->getChildPages();
           $totalPages += count($children);
@@ -60,7 +60,7 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
 
 
 
-
+      //print the data to the screen
       echo "<section class='five columns omega'>
       <div class='panel'>
         <h2>Heads Up Info:</h2>

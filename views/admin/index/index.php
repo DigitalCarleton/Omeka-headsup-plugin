@@ -6,7 +6,7 @@ echo head(array(
 ?>
 
 
-<h4><?php echo __('Alternative Text Options'); ?></h4>
+<h3><?php echo __('Choose which options to display on your dashboard'); ?></h3>
 
 
 <?php echo $form; ?>

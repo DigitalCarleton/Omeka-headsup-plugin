@@ -10,9 +10,13 @@ class HeadsUp_IndexController extends Omeka_Controller_AbstractActionController
       $request = $this->getRequest();
       if ($request->isPost()) {
           if ($form->isValid($request->getPost())) {
-              $options = $form->getValues();
-              foreach ($options as $value) {
-                  set_option('headsup_active', $value);
+              $values = $form->getValues();
+              $options = array( 'display_exhibits', 'display_exhibit_pages', 'display_items', 'display_collections' );
+              $i = 0;
+              // iterates through each option to set value of 0 or 1
+              foreach ($values as $value) {
+                set_option($options[$i], $value);
+                $i++;
               }
           }
       }

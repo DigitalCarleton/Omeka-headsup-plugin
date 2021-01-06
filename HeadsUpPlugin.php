@@ -54,20 +54,38 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
         $totalExhibitPages += count($pages);
       }
 
-      // only displays information for the selected checkboxes
+      $displayStartMessage = true;
+      $displayExhibits = get_option('display_exhibits');
+      $displayExhibitPages = get_option('display_exhibit_pages');
+      $displayItems = get_option('display_items');
+      $displayCollections = get_option('display_collections');
+      $settings = array( $displayExhibits, $displayExhibitPages, $displayItems, $displayCollections );
+
+      // if any items are selected to be displayed, we don't print the startup message
+      foreach ($settings as $value) {
+        if ($value==1) {
+          $displayStartMessage = false;
+        }
+      }
+
       echo "<h2>Heads Up Info:</h2>";
-      if (get_option('display_exhibits') == 1) {
-        echo "<p>Number of exhibits: {$numExhibits}</p>";
-      }
-      if (get_option('display_exhibit_pages') == 1) {
-        echo "<p>Total number of exhibit pages: {$totalExhibitPages}</p>";
-      }
-      if (get_option('display_items') == 1) {
-        echo "<p>Number of items: {$numItems}</p>";
-      }
-      if (get_option('display_collections') == 1) {
-        echo "<p>Number of collections: {$numCollections}</p>";
-      }
+      if ($displayStartMessage == true) {
+        echo "<p>No options have been selected. Go to the HeadsUp settings page to get started!</p>";
+      } else {
+          // only displays information for the selected checkboxes
+          if ($displayExhibits == 1) {
+            echo "<p>Number of exhibits: {$numExhibits}</p>";
+          }
+          if ($displayExhibitPages == 1) {
+            echo "<p>Total number of exhibit pages: {$totalExhibitPages}</p>";
+          }
+          if ($displayItems == 1) {
+            echo "<p>Number of items: {$numItems}</p>";
+          }
+          if ($displayCollections == 1) {
+            echo "<p>Number of collections: {$numCollections}</p>";
+          }
+        }
   }
 
   /**

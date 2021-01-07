@@ -16,61 +16,91 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
 
   public function hookInstall()
   {
-      set_option('headsup_active', 1);
+      set_option('display_exhibits', 1);
+      set_option('display_exhibit_pages', 1);
+      set_option('display_items', 1);
+      set_option('display_collections', 1);
   }
 
   public function hookUninstall()
   {
-      delete_option('headsup_active');
+      delete_option('display_exhibits');
+      delete_option('display_exhibit_pages');
+      delete_option('display_items');
+      delete_option('display_collections');
   }
 
 
   public function filterAdminNavigationMain($navArray){
-
     $navArray['HeadsUp'] = array(
         'label' => __("HeadsUp"),
         'uri' => url('heads-up')
     );
-
     return $navArray;
   }
-
-
-
-  public function hookAdminDashboard(){
-    $headsup_active = get_option('headsup_active');
-    if ($headsup_active == 1) {
-
+  
+  /**
+   * counts the number of exhibits, exhibit pages, items, and collections and displays them
+   */
+  public function displayHeadsUp(){
       $exhibits = get_records('Exhibit', $params=array(), $limit=0);
       $numExhibits = count($exhibits);
+      $numItems = total_records('Item');
+      $numCollections = total_records('Collection');
 
-
-      $totalPages = 0;
+      $totalExhibitPages = 0;
       foreach ($exhibits as $key => $exhibit) {
         $pages = $exhibit->getPages();
-        $totalPages += count($pages);
+        $totalExhibitPages += count($pages);
       }
 
+      $displayStartMessage = true;
+      $displayExhibits = get_option('display_exhibits');
+      $displayExhibitPages = get_option('display_exhibit_pages');
+      $displayItems = get_option('display_items');
+      $displayCollections = get_option('display_collections');
+      $settings = array( $displayExhibits, $displayExhibitPages, $displayItems, $displayCollections );
 
+      // if any items are selected to be displayed, we don't print the startup message
+      foreach ($settings as $value) {
+        if ($value==1) {
+          $displayStartMessage = false;
+        }
+      }
 
-
-
-      //print the data to the screen
-      echo "<section class='five columns omega'>
-      <div class='panel'>
-        <h2>Heads Up Info:</h2>
-        <p>Number of exhibits: {$numExhibits}</p>
-        <p>Total number of exhibit pages: {$totalPages}</p>
-      </div>
-      </section>";
-    }
+      echo "<h2>Heads Up Info:</h2>";
+      if ($displayStartMessage == true) {
+        echo "<p>No options have been selected. Go to the HeadsUp settings page to get started!</p>";
+      } else {
+          // only displays information for the selected checkboxes
+          if ($displayExhibits == 1) {
+            echo "<p>Number of exhibits: {$numExhibits}</p>";
+          }
+          if ($displayExhibitPages == 1) {
+            echo "<p>Total number of exhibit pages: {$totalExhibitPages}</p>";
+          }
+          if ($displayItems == 1) {
+            echo "<p>Number of items: {$numItems}</p>";
+          }
+          if ($displayCollections == 1) {
+            echo "<p>Number of collections: {$numCollections}</p>";
+          }
+        }
   }
 
-
-
-
-
-
-
-
+  /**
+   * Hook to call relevant information to be displayed in an HTML section
+   */
+  public function hookAdminDashboard() {
+    ?>
+    <section class='five columns omega' style="margin-left:0%">
+      <div class='panel'>
+        <?php $this->displayHeadsUp() ?>
+      </div>
+    </section>
+    <?php
+  }
 }
+
+
+

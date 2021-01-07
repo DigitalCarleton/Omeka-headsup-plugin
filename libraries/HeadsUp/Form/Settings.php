@@ -6,21 +6,25 @@ class HeadsUp_Form_Settings extends Omeka_Form
     {
         parent::init();
 
+        $displayExhibits = get_option('display_exhibits');
+        $displayExhibitPages = get_option('display_exhibit_pages');
+        $displayItems = get_option('display_items');
+        $displayCollections = get_option('display_collections');
 
-        $value = get_option('headsup_active');
+        // adds elements to form
+        $this->addElement( 'checkbox', 'exhibits', 
+                            array( 'label' => 'Display number of Exhibits', 'value' => $displayExhibits ) );
 
+        $this->addElement( 'checkbox', 'exhibit_pages', 
+                            array( 'label' => 'Display number of Exhibit pages', 'value' => $displayExhibitPages ) );
 
+        $this->addElement( 'checkbox', 'items',
+                            array( 'label' => 'Display number of Items', 'value' => $displayItems ) );
 
-        $this->addElement(
-            'checkbox',
-            'activate',
-            array(
-                'label' => 'Activate HeadsUp',
-                'value' => $value
-              )
-        );
+        $this->addElement( 'checkbox', 'collections',
+                            array( 'label' => 'Display number of Collections', 'value' => $displayCollections ) );
 
-        //builds the submit button
+        // builds the submit button
         $this->addElement('submit', 'submit', array(
                 'label' => __('Save Settings'),
                 'class' => 'submit submit-medium',
@@ -29,18 +33,11 @@ class HeadsUp_Form_Settings extends Omeka_Form
                     array('HtmlTag', array('tag' => 'div', 'class' => 'field')))),
         ));
 
-
-        //makes display separate groups for visual formatting
-        $this->addDisplayGroup(
-            array('activate'),
-            'Activate'
-        );
-
-        $this->addDisplayGroup(
-            array('submit'),
-            'Save Settings Button'
-        );
-
-
+        // build the display group for each setting
+        $this->addDisplayGroup( array('exhibits'), 'Exhibits' );
+        $this->addDisplayGroup( array('exhibit_pages'), 'Exhibit Pages' );
+        $this->addDisplayGroup( array('items'), 'Items' );
+        $this->addDisplayGroup( array('collections'), 'Collections' );
+        $this->addDisplayGroup( array('submit'), 'Save Settings Button' );
     }
 }

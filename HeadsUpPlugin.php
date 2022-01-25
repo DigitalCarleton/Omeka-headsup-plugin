@@ -20,6 +20,7 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
       set_option('display_exhibit_pages', 1);
       set_option('display_items', 1);
       set_option('display_collections', 1);
+      set_option('display_date', 1);
   }
 
   public function hookUninstall()
@@ -28,6 +29,7 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
       delete_option('display_exhibit_pages');
       delete_option('display_items');
       delete_option('display_collections');
+      delete_option('display_date');
   }
 
 
@@ -47,6 +49,9 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
       $numExhibits = count($exhibits);
       $numItems = total_records('Item');
       $numCollections = total_records('Collection');
+      $recentCollection = get_recent_collections($num=1);
+      $dateRecentCollection = $recentCollection[0]["added"];
+
 
       $totalExhibitPages = 0;
       foreach ($exhibits as $key => $exhibit) {
@@ -59,7 +64,8 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
       $displayExhibitPages = get_option('display_exhibit_pages');
       $displayItems = get_option('display_items');
       $displayCollections = get_option('display_collections');
-      $settings = array( $displayExhibits, $displayExhibitPages, $displayItems, $displayCollections );
+      $displayDate = get_option('display_date');
+      $settings = array( $displayExhibits, $displayExhibitPages, $displayItems, $displayCollections, $displayDate);
 
       // if any items are selected to be displayed, we don't print the startup message
       foreach ($settings as $value) {
@@ -84,6 +90,9 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
           }
           if ($displayCollections == 1) {
             echo "<p>Number of collections: {$numCollections}</p>";
+          }
+          if ($displayDate == 1) {
+            echo "<p>Date of Recent Collection: {$dateRecentCollection}</p>";
           }
         }
   }

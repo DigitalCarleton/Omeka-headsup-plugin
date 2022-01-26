@@ -20,7 +20,11 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
       set_option('display_exhibit_pages', 1);
       set_option('display_items', 1);
       set_option('display_collections', 1);
+<<<<<<< HEAD
       set_option('display_collection_date', 1);
+=======
+      set_option('display_date', 1);
+>>>>>>> 84b17e9fa4debeae76ca40ea5c71bbd2b9186342
   }
 
   public function hookUninstall()
@@ -29,7 +33,11 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
       delete_option('display_exhibit_pages');
       delete_option('display_items');
       delete_option('display_collections');
+<<<<<<< HEAD
       delete_option('display_collection_date');
+=======
+      delete_option('display_date');
+>>>>>>> 84b17e9fa4debeae76ca40ea5c71bbd2b9186342
   }
 
 

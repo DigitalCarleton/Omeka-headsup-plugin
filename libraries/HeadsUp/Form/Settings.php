@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../../../HeadsUpPlugin.php';
+require_once __DIR__ . '/../../../helpers/exhibitHelper.php';
 
 class HeadsUp_Form_Settings extends Omeka_Form
 {
@@ -8,7 +8,7 @@ class HeadsUp_Form_Settings extends Omeka_Form
     {
         parent::init();
 
-        $check_exhibit = $this->optionsControl();
+        $check_exhibit = optionsControl();
 
         //Build exhibit options if ExhibitBuilder plugin is active
         if($check_exhibit['is_active'] == 1){

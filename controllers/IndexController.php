@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../HeadsUpPlugin.php';
+require_once __DIR__ . '/../helpers/exhibitHelper.php';
 
 class HeadsUp_IndexController extends Omeka_Controller_AbstractActionController
 {
@@ -13,7 +13,7 @@ class HeadsUp_IndexController extends Omeka_Controller_AbstractActionController
       if ($request->isPost()) {
           if ($form->isValid($request->getPost())) {
               $values = $form->getValues();
-              $check_exhibit = $this->optionsControl();
+              $check_exhibit = optionsControl();
 
               $options = $check_exhibit['options'];
 

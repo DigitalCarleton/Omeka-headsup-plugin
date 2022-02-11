@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Include the exhibitHelper.php
+ */
 require_once __DIR__ . '\helpers\exhibitHelper.php';
 
 class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
@@ -42,20 +45,6 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
     return $navArray;
   }
 
-  /*public function optionsControl(){
-    if (plugin_is_active('ExhibitBuilder')) {
-      return array( 
-        'is_active' => 1, 
-        'options' => array('display_exhibits', 'display_exhibit_pages', 'display_items', 'display_collections', 'display_collection_date')
-      );
-    }
-    else {
-      return array(
-        'is_active' => 0, 
-        'options' => array( 'display_items', 'display_collections','display_collection_date')
-      );
-    }
-  }*/
   
   /**
    * counts the number of exhibits, exhibit pages, items, and collections and displays them

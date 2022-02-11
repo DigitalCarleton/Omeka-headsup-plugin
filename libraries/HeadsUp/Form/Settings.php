@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Include the exhibitHelper.php
+ */
 require_once __DIR__ . '/../../../helpers/exhibitHelper.php';
 
 class HeadsUp_Form_Settings extends Omeka_Form

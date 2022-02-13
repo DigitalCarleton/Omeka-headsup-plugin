@@ -3,7 +3,7 @@
 /**
  * Include the exhibitHelper.php
  */
-require_once __DIR__ . '\helpers\exhibitHelper.php';
+require_once __DIR__ . '/helpers/exhibitHelper.php';
 
 class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
 

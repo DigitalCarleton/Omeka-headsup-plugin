@@ -20,11 +20,11 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
 
   public function hookInstall()
   {
-      set_option('display_exhibits', 1);
-      set_option('display_exhibit_pages', 1);
-      set_option('display_items', 1);
-      set_option('display_collections', 1);
-      set_option('display_collection_date', 1);
+      set_option('display_exhibits', 0);
+      set_option('display_exhibit_pages', 0);
+      set_option('display_items', 0);
+      set_option('display_collections', 0);
+      set_option('display_collection_date', 0);
   }
 
   public function hookUninstall()

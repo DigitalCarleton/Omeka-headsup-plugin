@@ -1,9 +1,9 @@
 <?php
 
 /**
- * include the exhibitHelper.php
+ * include the HeadsUpFunctions.php
  */
-require_once __DIR__ . '/../helpers/exhibitHelper.php';
+require_once __DIR__ . '/../helpers/HeadsUpFunctions.php';
 
 class HeadsUp_IndexController extends Omeka_Controller_AbstractActionController
 {

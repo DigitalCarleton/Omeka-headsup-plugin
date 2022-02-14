@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Include the exhibitHelper.php
+ * Include the HeadsUpFunctions.php
  */
-require_once __DIR__ . '/helpers/exhibitHelper.php';
+require_once __DIR__ . '/helpers/HeadsUpFunctions.php';
 
 class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
 

@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * include the HeadsUpFunctions.php
+ */
+require_once __DIR__ . '/../helpers/HeadsUpFunctions.php';
+
 class HeadsUp_IndexController extends Omeka_Controller_AbstractActionController
 {
     public function indexAction()
@@ -11,7 +16,10 @@ class HeadsUp_IndexController extends Omeka_Controller_AbstractActionController
       if ($request->isPost()) {
           if ($form->isValid($request->getPost())) {
               $values = $form->getValues();
-              $options = array( 'display_exhibits', 'display_exhibit_pages', 'display_items', 'display_collections' );
+              $check_exhibit = optionsControl();
+
+              $options = $check_exhibit['options'];
+
               $i = 0;
               // iterates through each option to set value of 0 or 1
               foreach ($values as $value) {

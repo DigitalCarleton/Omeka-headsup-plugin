@@ -47,7 +47,7 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
 
   
   /**
-   * counts the number of exhibits, exhibit pages, items, and collections and displays them
+   * counts the number of exhibits, exhibit pages, items, collections, and maybe map items and displays them
    */
   public function displayHeadsUp(){
       $check_exhibit = optionsControl();
@@ -56,6 +56,7 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
       $numItems = total_records('Item');
       $numCollections = total_records('Collection');
       $recentCollection = get_recent_collections($num=1);
+      $numMapItems = total_records('Location'); 
 
       if(count($recentCollection) != 0) {
         $collectionDate = $recentCollection[0]["added"];
@@ -116,6 +117,9 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
           }
           if ($displayCollectionDate == 1) {
             echo "<p>Date of Recent Collection: {$collectionDate}</p>";
+          }
+          if ($numMapItems >= 1) {
+            echo "<p>Number of Locations on the Map: {$numMapItems}</p>";
           }
         }
   }

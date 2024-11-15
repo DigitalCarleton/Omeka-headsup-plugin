@@ -16,8 +16,7 @@ class HeadsUp_IndexController extends Omeka_Controller_AbstractActionController
       if ($request->isPost()) {
           if ($form->isValid($request->getPost())) {
               $values = $form->getValues();
-              $check_exhibit = optionsControl();
-
+              $check_exhibit = optionsControlExhibit();
               $options = $check_exhibit['options'];
 
               $i = 0;

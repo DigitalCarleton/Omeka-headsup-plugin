@@ -11,7 +11,8 @@ class HeadsUp_Form_Settings extends Omeka_Form
     {
         parent::init();
 
-        $check_exhibit = optionsControl();
+        $check_exhibit = optionsControlExhibit();
+        $check_geo = optionsControlGeo();
 
         //Build exhibit options if ExhibitBuilder plugin is active
         if($check_exhibit['is_active'] == 1){
@@ -26,6 +27,16 @@ class HeadsUp_Form_Settings extends Omeka_Form
 
             $this->addDisplayGroup( array('exhibits'), 'Exhibits' ); 
             $this->addDisplayGroup( array('exhibit_pages'), 'Exhibit Pages' ); 
+        }
+        //Build map options if Geolocation plugin is active
+        if($check_geo['is_active'] == 1){
+    
+            $displayLocation = get_option('display_location'); 
+
+            $this->addElement( 'checkbox', 'location', 
+                            array( 'label' => 'Display number of map locations', 'value' => $displayLocation ) ); 
+
+            $this->addDisplayGroup( array('location'), 'Locations' ); 
         }
 
         

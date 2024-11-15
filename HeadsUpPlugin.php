@@ -25,6 +25,7 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
       set_option('display_items', 0);
       set_option('display_collections', 0);
       set_option('display_collection_date', 0);
+      set_option('display_location', 0);
   }
 
   public function hookUninstall()
@@ -34,6 +35,7 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
       delete_option('display_items');
       delete_option('display_collections');
       delete_option('display_collection_date');
+      delete_option('display_location');
   }
 
 
@@ -47,10 +49,11 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
 
   
   /**
-   * counts the number of exhibits, exhibit pages, items, and collections and displays them
+   * counts the number of exhibits, exhibit pages, items, collections, and maybe map items and displays them
    */
   public function displayHeadsUp(){
-      $check_exhibit = optionsControl();
+      $check_exhibit = optionsControlExhibit();
+      $check_geo = optionsControlGeo();
 
       
       $numItems = total_records('Item');
@@ -72,7 +75,7 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
 
       // Add exhibit information if ExhibitBuilder plugin is active
       if($check_exhibit["is_active"] == 1){
-        $exhibits = get_records('Exhibit', $params=array(), $limit=0);
+        $exhibits = get_records('Exhibit');
         $numExhibits = count($exhibits);
 
         
@@ -85,8 +88,29 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
         $displayExhibits = get_option('display_exhibits');
         $displayExhibitPages = get_option('display_exhibit_pages');
 
-        $settings = array($displayExhibits, $displayExhibitPages, $displayItems, $displayCollections, $displayCollectionDate );
+        //Check if Geolocaiton plugin is active
+        if($check_geo["is_active"] == 1){
+          $numMapItems = total_records('Location');
+          $displayLocation = get_option('display_location');
+
+          $settings = array($displayExhibits, $displayExhibitPages, $displayItems, $displayCollections, $displayCollectionDate, $displayLocation );
+        }
+        else{
+            $settings = array($displayExhibits, $displayExhibitPages, $displayItems, $displayCollections, $displayCollectionDate );
+        }
       }
+
+      //Check if Geolocaiton plugin is active
+      if($check_geo["is_active"] == 1){
+        $numMapItems = total_records('Location');
+
+        $displayLocation = get_option('display_location');
+
+        $settings = array( $displayItems, $displayCollections, $displayCollectionDate, $displayLocation );
+      }
+
+
+
 
       // if any items are selected to be displayed, we don't print the startup message
       foreach ($settings as $value) {
@@ -106,6 +130,11 @@ class HeadsUpPlugin extends Omeka_Plugin_AbstractPlugin {
             }
             if ($displayExhibitPages == 1) {
               echo "<p>Total number of exhibit pages: {$totalExhibitPages}</p>";
+            }
+          }
+          if ($check_geo["is_active"] == 1) {
+            if ($displayLocation == 1) {
+              echo "<p>Number of locations on the map: {$numMapItems}</p>";
             }
           }
           if ($displayItems == 1) {
